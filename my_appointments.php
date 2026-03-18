@@ -45,7 +45,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <th>Doctor</th>
                     <th>Date</th>
-                    <th>Time</th>
+                    <th>Slot</th>
                     <th>Message</th>
                     <th>Status</th>
                 </tr>
@@ -54,11 +54,11 @@ $result = mysqli_query($conn, $query);
                 <?php if(mysqli_num_rows($result) > 0): ?>
                     <?php while($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td><strong><?php echo $row['doctor_name']; ?></strong></td>
-                            <td><?php echo date('M d, Y', strtotime($row['appointment_date'])); ?></td>
-                            <td><?php echo date('h:i A', strtotime($row['appointment_time'])); ?></td>
-                            <td style="color: var(--text-muted); font-size: 0.9rem;"><?php echo $row['message'] ?: 'No message'; ?></td>
-                            <td>
+                            <td data-label="Doctor"><strong><?php echo $row['doctor_name']; ?></strong></td>
+                            <td data-label="Date"><?php echo date('M d, Y', strtotime($row['appointment_date'])); ?></td>
+                            <td data-label="Slot"><strong>Slot:</strong> <?php echo $row['appointment_time']; ?></td>
+                            <td data-label="Message" style="color: var(--text-muted); font-size: 0.9rem;"><?php echo $row['message'] ?: 'No message'; ?></td>
+                            <td data-label="Status">
                                 <span class="status status-<?php echo $row['status']; ?>">
                                     <?php echo $row['status']; ?>
                                 </span>

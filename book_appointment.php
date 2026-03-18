@@ -67,14 +67,19 @@ if (isset($_POST['book'])) {
 
     <?php if(!$success): ?>
     <form method="POST">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div class="form-group">
                 <label>Preferred Date</label>
                 <input type="date" name="date" required min="<?php echo date('Y-m-d'); ?>">
             </div>
             <div class="form-group">
-                <label>Preferred Time</label>
-                <input type="time" name="time" required>
+                <label>Available Slots</label>
+                <select name="time" required>
+                    <option value="" disabled selected>Select a Slot</option>
+                    <?php for($i=1; $i<=10; $i++): ?>
+                        <option value="Patient <?php echo $i; ?>">Patient <?php echo $i; ?></option>
+                    <?php endfor; ?>
+                </select>
             </div>
         </div>
         <div class="form-group">

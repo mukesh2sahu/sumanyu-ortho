@@ -92,7 +92,7 @@ $doctor = $doctor_result->fetch_assoc();
     <?php endif; ?>
 </section>
 
-<footer style="padding: 4rem 10%; background: var(--secondary); color: var(--white); text-align: center;">
+<footer class="footer">
     <p>&copy; <?php echo date('Y'); ?> Sumanyu Ortho. All rights reserved.</p>
 </footer>
 

@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <th>Patient Name</th>
                         <th>Email</th>
-                        <th>Date & Time</th>
+                        <th>Date & Slot</th>
                         <th>Reason</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -72,19 +72,19 @@ $result = mysqli_query($conn, $query);
                     <?php if(mysqli_num_rows($result) > 0): ?>
                         <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
-                                <td><strong><?php echo $row['patient_name']; ?></strong></td>
-                                <td style="font-size: 0.9rem; color: var(--text-muted);"><?php echo $row['patient_email']; ?></td>
-                                <td>
+                                <td data-label="Patient Name"><strong><?php echo $row['patient_name']; ?></strong></td>
+                                <td data-label="Email" style="font-size: 0.9rem; color: var(--text-muted);"><?php echo $row['patient_email']; ?></td>
+                                <td data-label="Date & Slot">
                                     <?php echo date('M d, Y', strtotime($row['appointment_date'])); ?><br>
-                                    <span style="font-size: 0.85rem; color: var(--primary);"><?php echo date('h:i A', strtotime($row['appointment_time'])); ?></span>
+                                    <span style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Slot: <?php echo $row['appointment_time']; ?></span>
                                 </td>
-                                <td style="font-size: 0.9rem; max-width: 200px;"><?php echo $row['message'] ?: '-'; ?></td>
-                                <td>
+                                <td data-label="Reason" style="font-size: 0.9rem; max-width: 200px;"><?php echo $row['message'] ?: '-'; ?></td>
+                                <td data-label="Status">
                                     <span class="status status-<?php echo $row['status']; ?>">
                                         <?php echo $row['status']; ?>
                                     </span>
                                 </td>
-                                <td>
+                                <td data-label="Actions">
                                     <?php if($row['status'] == 'pending'): ?>
                                         <form method="POST" class="action-btns">
                                             <input type="hidden" name="appointment_id" value="<?php echo $row['id']; ?>">
